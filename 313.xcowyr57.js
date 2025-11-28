@@ -147,7 +147,7 @@ window.EZ_CONFIG = {
             // 左侧区域内容配置
             leftContent: {
                 // 左侧背景图片URL或路径 (如不设置则不设置图片背景)
-                backgroundImage: 'https://www.loliapi.com/acg',
+                backgroundImage: '',
 
                 // 左上角网站名称配置
                 siteName: {
@@ -174,7 +174,7 @@ window.EZ_CONFIG = {
         showHotSaleBadge: true,
 
         // 是否显示套餐特性卡片 (true=显示, false=隐藏)
-        showPlanFeatureCards: true, // 默认显示
+        showPlanFeatureCards: false, // 默认显示
 
         // 是否自动选择周期最大的标签，设为false则不会自动选择
         autoSelectMaxPeriod: false, // 默认关闭
@@ -186,7 +186,7 @@ window.EZ_CONFIG = {
         lowStockThreshold: 5,
 
         // 是否启用周期折扣计算显示 (true=启用, false=禁用)
-        enableDiscountCalculation: true, // 默认启用
+        enableDiscountCalculation: false, // 默认启用
 
         // 价格周期的显示顺序（从大到小）
         periodOrder: [
@@ -262,31 +262,6 @@ window.EZ_CONFIG = {
         // 是否显示导入订阅
         showImportSubscription: true,
     },
-
-    // 客户端下载配置
-    CLIENT_CONFIG: {
-        // 整个下载卡片显示控制
-        showDownloadCard: true,
-
-        // 平台显示控制 (true=显示, false=隐藏)
-        showIOS: true,
-        showAndroid: true,
-        showMacOS: true,
-        showWindows: true,
-        showLinux: false,
-        showOpenWrt: false,
-
-        // 客户端下载链接  //可以改成文档链接直接在新标签页打开
-        clientLinks: {
-            ios: '🔴填你的客户端下载链接',
-            android: 'https://github.com/xxx/releases/latest',
-            macos: 'https://github.com/xxx/releases/latest',
-            windows: 'https://github.com/xxx/releases/latest',
-            linux: 'https://github.com/xxx/releases/latest',
-            openwrt: 'https://github.com/xxx/releases/latest'
-        },
-
-        // 订阅导入客户端显示控制 部分面板不支持SingBox导入请您注意检查
 
         // iOS平台
         showShadowrocket: true,
