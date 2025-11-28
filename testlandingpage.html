@@ -428,18 +428,20 @@
       min-width: 160px;
     }
 
-    .primary-button {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
-      color: white;
-      box-shadow: 0 8px 24px rgba(0, 140, 140, 0.35);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+/* 修改前：box-shadow: 0 8px 24px rgba(0, 140, 140, 0.35); */
+.primary-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+  color: white;
+  box-shadow: 0 8px 24px rgba(240, 198, 208, 0.35); /* 更改为粉色阴影 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    .primary-button:hover {
-      background: linear-gradient(135deg, var(--primary-color-dark), var(--primary-color));
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 140, 140, 0.45);
-    }
+/* 修改前：box-shadow: 0 16px 40px rgba(0, 140, 140, 0.45); */
+.primary-button:hover {
+  background: linear-gradient(135deg, var(--primary-color-dark), var(--primary-color));
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(240, 198, 208, 0.45); /* 更改为粉色悬停阴影 */
+}
 
     .secondary-button {
       background: rgba(255, 255, 255, 0.1);
@@ -1933,6 +1935,6 @@
       });
     });
   </script>
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
 </body>
 </html>
