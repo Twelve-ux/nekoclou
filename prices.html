@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/logo.png">
+  <title>价格方案 - Kitty Network</title>
+  <meta name="description" content="价格方案 - Kitty Network">
+  <meta property="og:title" content="价格方案 - Kitty Network">
+  <meta property="og:description" content="价格方案 - Kitty Network">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 主题切换过渡效果 */
+    * {
+      transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+    }
+    
+    /* 基础动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    :root {
+      --primary-color: #F0C6D0;
+      --primary-color-light: #F3D7DE;
+      --primary-color-dark: #E5B2BD;
+      --primary-rgb: 240, 198, 208; /* SYNCHRONIZED */
+      --text-color: #333;
+      --text-light: #666;
+      --text-lighter: #999;
+      --background-color: #fff;
+      --section-bg: #f5f5f7; /* SYNCHRONIZED */
+      --section-bg-alt: #f1f5f9;
+      --card-bg: #fff;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.15);
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+    }
+
+    :root.dark-theme {
+      --text-color: #f5f5f7;
+      --text-light: #a1a1a6;
+      --text-lighter: #8e8e93;
+      --background-color: #1a1a1a;
+      --section-bg: #0f0f0f;
+      --section-bg-alt: #1e1e1e;
+      --card-bg: #1a1a1a;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.4);
+      --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    :root.dark-theme header {
+      background-color: rgba(29, 29, 31, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* 隐藏滚动条 */
+    @media (min-width: 769px) {
+      html, body, div, main, section, article, aside, nav {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      ::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+      }
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      border-bottom: 1px solid var(--border-color);
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 32px;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+
+    .logo h1 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-self: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background-color: rgba(240, 198, 208, 0.05); /* SYNCHRONIZED */
+    }
+
+    .nav-links a.active {
+      color: var(--primary-color);
+      background-color: rgba(240, 198, 208, 0.1); /* SYNCHRONIZED */
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: all 0.3s;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      transform: scale(1.05);
+    }
+
+    :root.dark-theme .theme-toggle {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    :root.dark-theme .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--text-color);
+    }
+
+    main {
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      padding: 100px 5% 80px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--background-color) 0%, var(--section-bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* SYNCHRONIZED */
+      background: radial-gradient(circle at 30% 20%, rgba(240, 198, 208, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(240, 198, 208, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideUp 0.8s ease;
+      /* 暗色主题下增加轻微的发光阴影提升可读性 */
+    }
+
+    :root.dark-theme .hero-section h1 {
+      text-shadow: none;
+      -webkit-text-stroke: 0.4px rgba(255,255,255,0.25);
+    }
+
+    :root:not(.dark-theme) .hero-section h1 {
+      text-shadow: none;
+      -webkit-text-stroke: 0.4px rgba(0,0,0,0.25);
+    }
+
+    .hero-section p {
+      font-size: 24px;
+      color: var(--text-light);
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .pricing-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      animation: slideUp 0.8s ease 0.4s both;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .pricing-highlight svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pricing-section {
+      padding: 100px 5%;
+      background-color: var(--background-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 100px;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      animation: scaleIn 0.8s ease both;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-16px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(240, 198, 208, 0.2); /* SYNCHRONIZED */
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--primary-color);
+      transform: scale(1.05);
+      /* SYNCHRONIZED */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 198, 208, 0.05) 100%);
+      box-shadow: 0 12px 40px rgba(240, 198, 208, 0.2); /* SYNCHRONIZED */
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.05) translateY(-16px);
+      box-shadow: 0 28px 56px rgba(240, 198, 208, 0.3); /* SYNCHRONIZED */
+    }
+
+    :root.dark-theme .pricing-card {
+      background: rgba(26, 26, 26, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    :root.dark-theme .pricing-card:hover {
+      background: rgba(26, 26, 26, 0.8);
+      border-color: rgba(240, 198, 208, 0.3); /* SYNCHRONIZED */
+    }
+
+    :root.dark-theme .pricing-card.featured {
+      /* SYNCHRONIZED */
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(240, 198, 208, 0.1) 100%);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      color: white;
+      padding: 8px 24px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .popular-badge svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .pricing-header {
+      margin-bottom: 40px;
+    }
+
+    .pricing-header h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .currency {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .amount {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--primary-color);
+      line-height: 1;
+    }
+
+    .period {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .price-description {
+      font-size: 16px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .pricing-features {
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+
+    .feature-item svg {
+      stroke: var(--primary-color);
+      flex-shrink: 0;
+      background-color: rgba(240, 198, 208, 0.1); /* SYNCHRONIZED */
+      border-radius: 50%;
+      padding: 4px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 36px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .primary-button {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      color: white;
+      box-shadow: 0 8px 24px rgba(240, 198, 208, 0.35); /* SYNCHRONIZED */
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .primary-button:hover {
+      background: linear-gradient(135deg, var(--primary-color-dark), var(--primary-color));
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(240, 198, 208, 0.45); /* SYNCHRONIZED */
+    }
+
+    .guarantee-section {
+      padding: 80px 5%;
+      background-color: var(--section-bg);
+    }
+
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .guarantee-item {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .guarantee-item:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      border-color: rgba(240, 198, 208, 0.2); /* SYNCHRONIZED */
+    }
+
+    :root.dark-theme .guarantee-item {
+      background: rgba(26, 26, 26, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    :root.dark-theme .guarantee-item:hover {
+      background: rgba(26, 26, 26, 0.8);
+      border-color: rgba(240, 198, 208, 0.3); /* SYNCHRONIZED */
+    }
+
+    .guarantee-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .guarantee-icon svg {
+      stroke: white;
+      stroke-width: 2.5;
+    }
+
+    .guarantee-item h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-color);
+    }
+
+    .guarantee-item p {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+
+    .cta-section {
+      padding: 100px 5%;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      text-align: center;
+      color: white;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-container h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cta-container p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-section .primary-button {
+      background-color: white;
+      color: var(--primary-color);
+      min-width: 200px;
+    }
+
+    .cta-section .primary-button:hover {
+      background-color: rgba(255, 255, 255, 0.95);
+      transform: translateY(-3px);
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: white;
+      border: 3px solid white;
+      min-width: 200px;
+    }
+
+    .secondary-button:hover {
+      background-color: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1024px) {
+      .hero-section {
+        padding: 80px 4% 60px;
+      }
+
+      .hero-section h1 {
+        font-size: 48px;
+      }
+
+      .pricing-section {
+        padding: 80px 4%;
+      }
+
+      .pricing-grid {
+        gap: 30px;
+      }
+
+      .pricing-card {
+        padding: 35px 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        padding: 100px 5% 60px;
+      }
+
+      .hero-section h1 {
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+
+      .hero-section p {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+
+      .pricing-highlight {
+        font-size: 15px;
+        padding: 10px 18px;
+        margin-bottom: 30px;
+      }
+
+      .pricing-section {
+        padding: 60px 5%;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .pricing-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+        border-width: 2px;
+      }
+
+      .pricing-card.featured:hover {
+        transform: translateY(-8px);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .pricing-header h3 {
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .price {
+        margin-bottom: 12px;
+      }
+
+      .currency {
+        font-size: 18px;
+      }
+
+      .amount {
+        font-size: 40px;
+      }
+
+      .period {
+        font-size: 16px;
+      }
+
+      .price-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .pricing-features {
+        margin-bottom: 25px;
+      }
+
+      .feature-item {
+        padding: 8px 0;
+        font-size: 14px;
+      }
+
+      .feature-item svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+
+      .popular-badge {
+        top: -12px;
+        font-size: 12px;
+        padding: 6px 16px;
+      }
+
+      .button {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border-radius: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section {
+        padding: 80px 4% 50px;
+      }
+
+      .hero-section h1 {
+        font-size: 28px;
+      }
+
+      .hero-section p {
+        font-size: 15px;
+      }
+
+      .pricing-highlight {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .pricing-section {
+        padding: 50px 4%;
+      }
+
+      .pricing-card {
+        padding: 25px 16px;
+      }
+
+      .pricing-header h3 {
+        font-size: 20px;
+      }
+
+      .amount {
+        font-size: 36px;
+      }
+
+      .currency {
+        font-size: 16px;
+      }
+
+      .period {
+        font-size: 14px;
+      }
+
+      .price-description {
+        font-size: 13px;
+      }
+
+      .feature-item {
+        font-size: 13px;
+      }
+
+      .popular-badge {
+        font-size: 11px;
+        padding: 5px 14px;
+      }
+
+      .button {
+        padding: 12px 16px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    (function() {
+      const THEME_STORAGE_KEY = 'ez-theme-preference';
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+      if (initialTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      }
+
+      // 锁定页面标题，阻止任何配置文件修改
+      document.title = '价格方案 - Kitty Network';
+
+      // 完全锁定标题属性
+      Object.defineProperty(document, 'title', {
+        get: function() {
+          return '价格方案 - Kitty Network';
+        },
+        set: function(value) {
+          console.log('Title change blocked (locked to 价格方案 - Kitty Network):', value);
+          return;
+        },
+        configurable: false
+      });
+
+      // 阻止EZ_CONFIG对象
+      Object.defineProperty(window, 'EZ_CONFIG', {
+        get: function() { return undefined; },
+        set: function(value) { return; },
+        configurable: false
+      });
+    })();
+  </script>
+
+  <header>
+    <div class="logo">
+      <img src="./images/logo.png" alt="Logo" style="width: 32px; height: 32px;">
+      <h1>Kitty Network</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="landingpage.html">首页</a>
+      <a href="features.html">特性</a>
+      <a href="prices.html" class="active">价格</a>
+    </nav>
+    <div class="theme-toggle" id="themeToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-light">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="m4.93 4.93 1.41 1.41"></path>
+        <path d="m17.66 17.66 1.41 1.41"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="m6.34 17.66-1.41 1.41"></path>
+        <path d="m19.07 4.93-1.41 1.41"></path>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>简单透明的定价</h1>
+        <p>无隐藏费用 无复杂条款 无倍率套路</p>
+        
+        <div class="pricing-highlight">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20m0-20l7 7-7-7-7 7 7-7z"></path>
+          </svg>
+          <span>每月仅需2元起，全球任何地方都可以使用</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>AIR</h3>
+              <div class="price">
+                <span class="currency">¥</span>
+                <span class="amount">24</span>
+                <span class="period">/年付</span>
+              </div>
+              <p class="price-description">轻量级用户首选</p>
+            </div>
+            <div class="pricing-features">
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>月流量: 128G</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>地区: 🇺🇸🇨🇦🇬🇧🇯🇵🇩🇪🇳🇱</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>解锁 Netflix, Disney+, ChatGPT等</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>不限速，不限在线设备数量</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span style="color: #ff4444;">购买后请务必查看教程！！</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>年付24元，2元/月</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>两年付36元，1.5元/月</span>
+              </div>
+            </div>
+            <a href="javascript:void(0)" onclick="navigateTo('register')" class="button primary-button">立即订阅</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="popular-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+              </svg>
+              <span>最受欢迎</span>
+            </div>
+            <div class="pricing-header">
+              <h3>STANDARD</h3>
+              <div class="price">
+                <span class="currency">¥</span>
+                <span class="amount">15</span>
+                <span class="period">/季付</span>
+              </div>
+              <p class="price-description">性价比最高的选择</p>
+            </div>
+            <div class="pricing-features">
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>月流量: 512G</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>地区: 🇺🇸🇨🇦🇬🇧🇯🇵🇩🇪🇳🇱</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>解锁 Netflix, Disney+, ChatGPT等</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>不限速，不限在线设备数量</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span style="color: #ff4444;">购买后请务必查看教程！！</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>季付15元，5元/月</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>年付50元，4元/月</span>
+              </div>
+            </div>
+            <a href="javascript:void(0)" onclick="navigateTo('register')" class="button primary-button">立即订阅</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>PREMIUM</h3>
+              <div class="price">
+                <span class="currency">¥</span>
+                <span class="amount">9</span>
+                <span class="period">/月付</span>
+              </div>
+              <p class="price-description">大流量下载首选</p>
+            </div>
+            <div class="pricing-features">
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>月流量: 1024G</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>地区: 🇺🇸🇨🇦🇬🇧🇯🇵🇩🇪🇳🇱</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>解锁 Netflix, Disney+, ChatGPT等</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>不限速，不限在线设备数量</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span style="color: #ff4444;">购买后请务必查看教程！！</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>月付9元</span>
+              </div>
+              <div class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+                <span>年付90元，7元/月</span>
+              </div>
+            </div>
+            <a href="javascript:void(0)" onclick="navigateTo('register')" class="button primary-button">立即订阅</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  <script>
+    // 导航函数
+    function navigateTo(route) {
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'navigation',
+          route: route
+        }, '*');
+      } else {
+        window.location.href = '/#/' + route;
+      }
+    }
+
+    // 主题设置
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const THEME_STORAGE_KEY = 'ez-theme-preference';
+
+    function getThemePreference() {
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      if (savedTheme) return savedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function setTheme(theme, notifyParent = true) {
+      if (theme === 'dark') {
+        root.classList.add('dark-theme');
+        updateThemeIcon('dark');
+      } else {
+        root.classList.remove('dark-theme');
+        updateThemeIcon('light');
+      }
+
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+      if (notifyParent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'themeChanged',
+          theme: theme
+        }, '*');
+      }
+    }
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9a9 9 0 1 1 -9 -9z"></path>
+          </svg>
+        `;
+      } else {
+        themeToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        `;
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = root.classList.contains('dark-theme') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme, true);
+    }
+
+    setTheme(getThemePreference(), false);
+    themeToggle.addEventListener('click', toggleTheme);
+
+
+  </script>
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+</body>
+</html>

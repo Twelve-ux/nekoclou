@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/logo.png">
+  <title>产品特性 - Kitty Network</title>
+  <meta name="description" content="产品特性 - Kitty Network">
+  <meta property="og:title" content="产品特性 - Kitty Network">
+  <meta property="og:description" content="产品特性 - Kitty Network">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 主题切换过渡效果 */
+    * {
+      transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+    }
+    
+    /* 基础动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    :root {
+      /* SYNCHRONIZED from testlandingpage.html */
+      --primary-color: #F0C6D0;
+      --primary-color-light: #F3D7DE;
+      --primary-color-dark: #E5B2BD;
+      --primary-rgb: 240, 198, 208;
+      /* End Synchronization */
+
+      --text-color: #333;
+      --text-light: #666;
+      --text-lighter: #999;
+      --background-color: #fff;
+      --section-bg: #f5f5f7; /* SYNCHRONIZED */
+      --section-bg-alt: #f1f5f9;
+      --card-bg: #fff;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.15);
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+    }
+
+    :root.dark-theme {
+      --text-color: #f5f5f7;
+      --text-light: #a1a1a6;
+      --text-lighter: #8e8e93;
+      --background-color: #1a1a1a;
+      --section-bg: #0f0f0f; /* SYNCHRONIZED */
+      --section-bg-alt: #1e1e1e;
+      --card-bg: #1a1a1a;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.4);
+      --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    :root.dark-theme header {
+      background-color: rgba(29, 29, 31, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* 隐藏滚动条 */
+    @media (min-width: 769px) {
+      html, body, div, main, section, article, aside, nav {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      ::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+      }
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      border-bottom: 1px solid var(--border-color);
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 32px;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+
+    .logo h1 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-self: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background-color: rgba(240, 198, 208, 0.05); /* SYNCHRONIZED */
+    }
+
+    .nav-links a.active {
+      color: var(--primary-color);
+      background-color: rgba(240, 198, 208, 0.1); /* SYNCHRONIZED */
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: all 0.3s;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      transform: scale(1.05);
+    }
+
+    :root.dark-theme .theme-toggle {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    :root.dark-theme .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--text-color);
+    }
+
+    main {
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      padding: 100px 5% 80px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--background-color) 0%, var(--section-bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideUp 0.8s ease;
+    }
+
+    :root.dark-theme .hero-section h1 {
+      text-shadow: none;
+      -webkit-text-stroke: 0.4px rgba(255,255,255,0.25);
+    }
+
+    :root:not(.dark-theme) .hero-section h1 {
+      text-shadow: none;
+      -webkit-text-stroke: 0.4px rgba(0,0,0,0.25);
+    }
+
+    .hero-section p {
+      font-size: 24px;
+      color: var(--text-light);
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .features-section {
+      padding: 100px 5%;
+      background-color: var(--background-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title p {
+      font-size: 20px;
+      color: var(--text-light);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      animation: scaleIn 0.8s ease both;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(240, 198, 208, 0.2); /* SYNCHRONIZED */
+    }
+
+    :root.dark-theme .feature-card {
+      background: rgba(26, 26, 26, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    :root.dark-theme .feature-card:hover {
+      background: rgba(26, 26, 26, 0.8);
+      border-color: rgba(240, 198, 208, 0.3); /* SYNCHRONIZED */
+    }
+
+    .feature-icon-container {
+      width: 64px;
+      height: 64px;
+      /* SYNCHRONIZED */
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(240, 198, 208, 0.4); /* SYNCHRONIZED */
+    }
+
+    .feature-icon-container svg {
+      stroke: white;
+      stroke-width: 2.5;
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-color);
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+
+    .speed-test-section {
+      padding: 80px 5%;
+      background-color: var(--section-bg);
+      text-align: center;
+    }
+
+    .speed-test-section h2 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .speed-test-section p {
+      font-size: 20px;
+      color: var(--text-light);
+      margin-bottom: 40px;
+    }
+
+    .speed-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .speed-item {
+      background-color: var(--card-bg);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: var(--shadow-light);
+      max-width: 300px;
+      flex-basis: 30%;
+      transition: all 0.3s;
+      border: 1px solid var(--border-color);
+    }
+
+    .speed-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-medium);
+      border-color: var(--primary-color-light);
+    }
+
+    .speed-item h4 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .speed-item .speed-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .speed-item .detail {
+      font-size: 14px;
+      color: var(--text-lighter);
+    }
+
+    .cta-section {
+      padding: 100px 5%;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-container h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cta-container p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 36px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      min-width: 200px;
+    }
+
+    .primary-button {
+      background-color: white;
+      color: var(--primary-color);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .primary-button:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(255, 255, 255, 0.45);
+    }
+
+    .secondary-button {
+      background-color: transparent;
+      color: white;
+      border: 3px solid white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .secondary-button:hover {
+      background-color: white;
+      color: var(--primary-color);
+      transform: translateY(-4px);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1024px) {
+      .hero-section h1 {
+        font-size: 48px;
+      }
+      .features-grid {
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      .feature-card {
+        padding: 35px 25px;
+      }
+      .speed-gallery {
+        gap: 20px;
+      }
+      .speed-item {
+        max-width: 250px;
+        flex-basis: auto;
+      }
+      .cta-container h2 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 100px 5% 60px;
+      }
+      .hero-section h1 {
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+      .hero-section p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      .features-section {
+        padding: 60px 5%;
+      }
+      .section-title {
+        margin-bottom: 40px;
+      }
+      .section-title h2 {
+        font-size: 30px;
+      }
+      .section-title p {
+        font-size: 16px;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .feature-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+      .feature-icon-container {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 16px;
+      }
+      .feature-card h3 {
+        font-size: 20px;
+      }
+      .speed-test-section {
+        padding: 60px 5%;
+      }
+      .speed-test-section h2 {
+        font-size: 30px;
+      }
+      .speed-test-section p {
+        font-size: 16px;
+      }
+      .speed-gallery {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .speed-item {
+        max-width: 100%;
+        padding: 20px;
+      }
+      .speed-item .speed-value {
+        font-size: 28px;
+      }
+      .cta-section {
+        padding: 60px 5%;
+      }
+      .cta-container h2 {
+        font-size: 28px;
+      }
+      .cta-container p {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      .cta-buttons {
+        gap: 16px;
+      }
+      .button {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    (function() {
+      const THEME_STORAGE_KEY = 'ez-theme-preference';
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+      if (initialTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      }
+
+      // 锁定页面标题，阻止任何配置文件修改
+      document.title = '产品特性 - Kitty Network';
+
+      // 完全锁定标题属性
+      Object.defineProperty(document, 'title', {
+        get: function() {
+          return '产品特性 - Kitty Network';
+        },
+        set: function(value) {
+          console.log('Title change blocked (locked to 产品特性 - Kitty Network):', value);
+          return;
+        },
+        configurable: false
+      });
+
+      // 阻止EZ_CONFIG对象
+      Object.defineProperty(window, 'EZ_CONFIG', {
+        get: function() { return undefined; },
+        set: function(value) { return; },
+        configurable: false
+      });
+    })();
+  </script>
+
+  <header>
+    <div class="logo">
+      <img src="./images/logo.png" alt="Logo" style="width: 32px; height: 32px;">
+      <h1>Kitty Network</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="landingpage.html">首页</a>
+      <a href="features.html" class="active">特性</a>
+      <a href="prices.html">价格</a>
+    </nav>
+    <div class="theme-toggle" id="themeToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-light">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="m4.93 4.93 1.41 1.41"></path>
+        <path d="m17.66 17.66 1.41 1.41"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="m6.34 17.66-1.41 1.41"></path>
+        <path d="m19.07 4.93-1.41 1.41"></path>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>极致性能，无与伦比的体验</h1>
+        <p>我们投入重金打造网络基础设施，确保您在全球任何角落都能享受闪电般的网速和稳定连接。</p>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>核心优势</h2>
+          <p>选择我们的原因：速度、稳定和全球覆盖</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12v-1c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v1"></path>
+                <path d="M12 19v-4"></path>
+                <path d="M10 17h4"></path>
+                <circle cx="12" cy="15" r="1"></circle>
+                <rect x="2" y="7" width="20" height="15" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+            <h3>原生 IP 接入</h3>
+            <p>我们提供全套原生 IP，完美解锁 Netflix, Disney+, Hulu, HBO Max 等流媒体限制，让您畅享全球内容。</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2.5 10A14.5 14.5 0 0 0 21.5 10"></path>
+                <path d="M2.5 14A14.5 14.5 0 0 1 21.5 14"></path>
+                <path d="M16 3.07S13 7 12 12s-1 8.93-4 12"></path>
+              </svg>
+            </div>
+            <h3>全球多地区覆盖</h3>
+            <p>线路节点覆盖美洲、欧洲、亚洲等多个核心国家/地区，提供稳定、低延迟的全球网络访问。</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <h3>不限速 高带宽</h3>
+            <p>所有线路均采用高性能服务器，不限制您的连接速度，无论是4K视频还是大型文件下载都瞬间完成。</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                <path d="M21 15.5H3"></path>
+                <path d="M10 10l4 4m0-4l-4 4"></path>
+              </svg>
+            </div>
+            <h3>全平台客户端</h3>
+            <p>支持 Windows, macOS, iOS, Android 等主流操作系统，提供简洁易用的客户端配置。</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+            </div>
+            <h3>24/7 快速技术支持</h3>
+            <p>我们的专业技术团队全年无休，通过工单系统为您提供高效、即时的技术支持与疑难解答。</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3>保护用户隐私</h3>
+            <p>我们承诺不记录任何用户活动日志和个人信息，最大限度地保护您的隐私安全。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="speed-test-section">
+      <div class="container">
+        <h2>线路速度实测</h2>
+        <p>以下是我们在核心节点进行的最新测速数据（仅供参考）</p>
+
+        <div class="speed-gallery">
+          <div class="speed-item">
+            <h4>香港 HGC</h4>
+            <div class="speed-value">985 Mbps</div>
+            <div class="detail">延迟: 45ms</div>
+          </div>
+          <div class="speed-item">
+            <h4>日本 IIJ</h4>
+            <div class="speed-value">1.1 Gbps</div>
+            <div class="detail">延迟: 60ms</div>
+          </div>
+          <div class="speed-item">
+            <h4>美国 AS4837</h4>
+            <div class="speed-value">890 Mbps</div>
+            <div class="detail">延迟: 130ms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>准备好开始体验了吗？</h2>
+        <p>我们提供多种套餐选择，满足您的各种需求。现在就加入，享受无界网络。</p>
+        <div class="cta-buttons">
+          <a href="javascript:void(0)" onclick="navigateTo('prices')" class="button primary-button">查看价格方案</a>
+          <a href="javascript:void(0)" onclick="navigateTo('contact')" class="button secondary-button">联系我们</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 导航函数
+    function navigateTo(route) {
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'navigation',
+          route: route
+        }, '*');
+      } else {
+        window.location.href = '/#/' + route;
+      }
+    }
+
+    // 主题设置
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const THEME_STORAGE_KEY = 'ez-theme-preference';
+
+    function getThemePreference() {
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      if (savedTheme) return savedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function setTheme(theme, notifyParent = true) {
+      if (theme === 'dark') {
+        root.classList.add('dark-theme');
+        updateThemeIcon('dark');
+      } else {
+        root.classList.remove('dark-theme');
+        updateThemeIcon('light');
+      }
+
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+      if (notifyParent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'themeChanged',
+          theme: theme
+        }, '*');
+      }
+    }
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9a9 9 0 1 1 -9 -9z"></path>
+          </svg>
+        `;
+      } else {
+        themeToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        `;
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = root.classList.contains('dark-theme') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme, true);
+    }
+
+    setTheme(getThemePreference(), false);
+    themeToggle.addEventListener('click', toggleTheme);
+
+
+  </script>
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+</body>
+</html>
