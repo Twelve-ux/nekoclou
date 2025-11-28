@@ -29,8 +29,8 @@ window.EZ_CONFIG = {
         // 支持字符串形式(单个API地址)或数组形式(多个备选API地址)
         // 多个地址时，会按顺序检测可用性，并使用第一个可用的地址
         staticBaseUrl: [
-            'https://机场域名/api/v1',
-            'https://机场域名/api/v1'
+            'https://dy.nekocloud.top/api/v1',
+            'https://dy.nekocloud.top/api/v1'
         ],
       
         // 自动获取模式配置 (urlMode = 'auto'时使用)
@@ -66,7 +66,7 @@ window.EZ_CONFIG = {
         siteName: 'Neko Cloud',
         siteDescription: 'EZ UI',
         // copyright会自动使用当前年份
-        copyright: `© ${new Date().getFullYear()} EZ THEME. All Rights Reserved.`,
+        copyright: `© ${new Date().getFullYear()} Neko Cloud. All Rights Reserved.`,
 
         // 是否显示标题中的网站Logo (true=显示, false=隐藏)
         showLogo: true,
