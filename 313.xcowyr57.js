@@ -171,7 +171,7 @@ window.EZ_CONFIG = {
     // 商店页面配置
     SHOP_CONFIG: {
         // 是否在商店导航上显示热销标记
-        showHotSaleBadge: true,
+        showHotSaleBadge: false,
 
         // 是否显示套餐特性卡片 (true=显示, false=隐藏)
         showPlanFeatureCards: true, // 默认显示
@@ -186,7 +186,7 @@ window.EZ_CONFIG = {
         lowStockThreshold: 5,
 
         // 是否启用周期折扣计算显示 (true=启用, false=禁用)
-        enableDiscountCalculation: true, // 默认启用
+        enableDiscountCalculation: false, // 默认启用
 
         // 价格周期的显示顺序（从大到小）
         periodOrder: [
