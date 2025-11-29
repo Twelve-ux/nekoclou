@@ -180,7 +180,7 @@ window.EZ_CONFIG = {
         autoSelectMaxPeriod: false, // 默认关闭
 
         // 是否隐藏周期选择标签 (true=隐藏, false=显示)
-        hidePeriodTabs: false, // 默认显示周期选择标签
+        hidePeriodTabs: true, // 默认显示周期选择标签
 
         // 库存紧张的阈值（当库存数量小于等于此值且大于0时显示库存紧张）
         lowStockThreshold: 5,
